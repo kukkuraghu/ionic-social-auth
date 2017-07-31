@@ -1,0 +1,41 @@
+<!--
+  Generated template for the MePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar primary>
+    <ion-title>It is me!</ion-title>
+
+    <ion-buttons end>
+      <button ion-button icon-only (click)="logout()">
+        <ion-icon name="log-out"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <ion-card>
+
+    <ion-card-header>
+          {{myDetail.first_name}} {{myDetail.last_name}}
+    </ion-card-header>
+
+
+    <ion-card-content>
+      <ion-row>
+        <ion-col></ion-col>
+        <ion-col></ion-col>
+        <ion-col><img [src]="myDetail.pictureUrl" /></ion-col>
+        <ion-col></ion-col>
+        <ion-col></ion-col>
+      </ion-row>
+      <h2>
+        Mail me @ {{myDetail.email}}
+      </h2>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
