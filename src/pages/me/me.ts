@@ -20,18 +20,23 @@ export class MePage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad MePage');
   }
-  logout() {
+  async logout() {
     let spinner = this.loadingCtrl.create({});
     spinner.present();
-    var finallyLogout = () => {
+    try {
+      switch(this.myDetail.socialType) {
+        case SocialTypes.facebook : await this.authServices.fbLogout();
+                                    break;
+        case SocialTypes.google   : await this.authServices.googleLogout();
+                                    break;
+      }
+    }
+    catch(e) {
+      console.log('error while logging out', e);
+    }
+    finally {
       spinner.dismiss();
       this.navCtrl.push(JoinPage);
-    };
-    switch(this.myDetail.socialType) {
-      case SocialTypes.facebook : this.authServices.fbLogout().finally(finallyLogout);
-                                  break;
-      case SocialTypes.google   : this.authServices.googleLogout().finally(finallyLogout);
-                                  break;
     }
   }
 }
